@@ -34,15 +34,15 @@ the latest revisions => GET `/student/profile`
 * get student's current incomplete exam => GET `/student/exam`
 * save exam changes and come retrive them later (before it expires) => POST `/student/save-answers/:examId`
 body{
-  answers[
-    {answer, id}
+  answers[ 
+     { answer, id }
   ]
 }
 
 * submit exam (before it expires) can't change it after=> POST `/student/submit/:examId`
 body{
-  answers[
-    {answer, id}
+  answers[ 
+    { answer, id }
   ]
 }
 
@@ -73,13 +73,13 @@ body {
 * get one detailed entity => GET `/admin/(course, category, trainer)`
 * get all entities => GET `/admin/(courses, categories, trainers)/:id`
 * set one entity => POST `/admin/(course, category, trainer)`
-* body for course {
+ body for course {
   name, level, category, instructors: string[]
 }
-* body for category {
+ body for category {
   name
 }
-* body for trainer {
+ body for trainer {
   name
 }
 * update one entity => PUT `/admin/(courses, categories, trainers)/:id`
