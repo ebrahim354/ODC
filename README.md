@@ -95,6 +95,8 @@ body for trainer {
 
 * delete one entity => DELETE `/admin/(courses, categories, trainers)/:id`
 
+### trainers crud and assigning for courses.
+
 * assign a trainer for a course => POST `/admin/assign`
 body {
   trainerId, courseId
@@ -104,6 +106,7 @@ body {
 body {
   trainerId, courseId
 }
+### viewing pending exams to review them (examReviewrs and super admin only). 
 
 * view pending exams for specific course => GET `/admin/pending-exams/:courseId`
 * view pending one pending exam => GET `/admin/pending-exam/:examId`
@@ -120,6 +123,7 @@ body {
   maxDegree, minDegree, degree
 }
 
+### adding,removing and viewing questions from the system.
 * add a question to the system => POST `/admin/question`
 options are optional.
 
@@ -132,6 +136,8 @@ body {
 
 * delete a question from the system => DELETE `/admin/questions/:questionId`
 
+### control expiration dates for exams.
+
 * expire all exams => POST `/expire`
 * expire an exam => POST `/expire/:examId`
 change exams expiration data => POST `/expires-in/:examId`
@@ -139,7 +145,13 @@ body{
   date
 }
 
+### control admins and roles (super admin only).
 * set a role for an admin => POST `set-role/:targetId`
 body {
    role
+}
+
+* adding a new admin and send email that they are added (for super admins only) => POST `/admin/add-admin`
+body {
+name, email, role, image
 }
