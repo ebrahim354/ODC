@@ -112,7 +112,7 @@ body {
 * view pending one pending exam => GET `/admin/pending-exam/:examId`
 
 * accept an exam and create a revision
-and send email to the accepted student => POST `/admin/accept/:examId`
+  and send email to the accepted student => POST `/admin/accept/:examId`
 body {
   maxDegree, minDegree, degree
 }
