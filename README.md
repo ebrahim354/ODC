@@ -1,21 +1,28 @@
 the public route => GET '/'
 will send in some basic courses information
 
-STUDENTS.
+
+
+
+
+
+
+STUDENTS
+
 student routes should be prefixed with `/student`
 student register => POST `/student/register`
 body {
-email,password, phone, address, college, name
+   email,password, phone, address, college, name
 }
 
 verify your account after register => POST `/student/verify`
 body{
-code, email
+  code, email
 }
 
 student register => POST `/student/login`
 body {
-email or phone, password
+  email or phone, password
 }
 
 student's profile is a combination of his latest revisions and his current in compmlete exam.
@@ -25,17 +32,21 @@ student enroll => GET `/student/enroll/:courseId`
 get student's current incomplete exam => GET `/student/exam`
 save exam changes and come retrive them later (before it expires) => POST `/student/save-answers/:examId`
 body{
-answers[
-{answer, id}
-]
+  answers[
+    {answer, id}
+  ]
 }
 
 submit exam (before it expires) can't change it after=> POST `/student/submit/:examId`
 body{
-answers[
-{answer, id}
-]
+  answers[
+    {answer, id}
+  ]
 }
+
+
+
+
 
 ADMINs.
 
@@ -43,14 +54,14 @@ admin routes should be prefixed with `/admin`
 
 admin log in => POST `/admin/login`
 body {
-email, password
+  email, password
 }
 
 see all the student of the system => GET `/admin/students`
 
 adding a new admin and send email that they are added (for super admins only) => POST `/admin/add-admin`
 body {
-name, email, role, image
+  name, email, role, image
 }
 
 CRUT operations on (category, course, trainer)
@@ -59,34 +70,35 @@ get one detailed entity => GET `/admin/(course, category, trainer)`
 get all entities => GET `/admin/(courses, categories, trainers)/:id`
 set one entity => POST `/admin/(course, category, trainer)`
 body for course {
-name, level, category, instructors: string[]
+  name, level, category, instructors: string[]
 }
 body for category {
-name
+  name
 }
 body for trainer {
-name
+  name
 }
 update one entity => PUT `/admin/(courses, categories, trainers)/:id`
 body for course {
-name, level, category
+  name, level, category
 }
 body for category {
-name
+  name
 }
 body for trainer {
-name
+  name
 }
+
 delete one entity => DELETE `/admin/(courses, categories, trainers)/:id`
 
 assign a trainer for a course => POST `/admin/assign`
 body {
-trainerId, courseId
+  trainerId, courseId
 }
 
 unassign a trainer for a course => POST `/admin/unassign`
 body {
-trainerId, courseId
+  trainerId, courseId
 }
 
 view pending exams for specific course => GET `/admin/pending-exams/:courseId`
@@ -95,20 +107,20 @@ view pending one pending exam => GET `/admin/pending-exam/:examId`
 accept an exam and create a revision
 and send email to the accepted student => POST `/admin/accept/:examId`
 body {
-maxDegree, minDegree, degree
+  maxDegree, minDegree, degree
 }
 
 reject an exam and create a revision
 and send email to the rejected student => POST `/admin/reject/:examId`
 body {
-maxDegree, minDegree, degree
+  maxDegree, minDegree, degree
 }
 
 add a question to the system => POST `/admin/question`
 options are optional.
 
 body {
-content, category, options: string[]
+  content, category, options: string[]
 }
 
 get all the questions of the system
@@ -120,5 +132,5 @@ expire all exams => POST `/expire`
 expire an exam => POST `/expire/:examId`
 change exams expiration data => POST `/expires-in/:examId`
 body{
-date
+  date
 }
