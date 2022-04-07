@@ -68,7 +68,7 @@ body {
   name, email, role, image
 }
 
-### CRUT operations on (category, course, trainer)
+### CRUD operations on (category, course, trainer)
 
 * get one detailed entity => GET `/admin/(course, category, trainer)`
 * get all entities => GET `/admin/(courses, categories, trainers)/:id`
