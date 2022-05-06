@@ -14,9 +14,11 @@ module.exports = async (targetId, role) => {
 			targetId,
 			{
 				role,
+				isSuperAdmin: false,
 			},
 			true
 		);
+		if (!admin) throw new Error('unAuthorized!');
 		console.log('admin: ', admin);
 		const text = `
       you are assigned as ${role} for the ODC project.

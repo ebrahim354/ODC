@@ -9,7 +9,7 @@ const saltRounds = 10;
 module.exports = async admin => {
 	try {
 		const password = generatePassword(10);
-
+		console.log('hello');
 		admin.password = password;
 
 		const text = `

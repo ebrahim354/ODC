@@ -8,14 +8,21 @@ module.exports = async ({ email, password }) => {
 		let checkPassword;
 		console.log('checkAdmin', checkAdmin);
 
-		if (!checkAdmin) throw new Error('Invalid email or password');
+		if (!checkAdmin) {
+			console.log('hello2');
+			throw new Error('Invalid email or password');
+		}
 		console.log('checkAdmin', password, checkAdmin.password);
 
-		if (!checkAdmin.isSuperUser)
+		if (!checkAdmin.isSuperAdmin)
 			checkPassword = await bcrypt.compare(password, checkAdmin.password);
-		else checkPassword = password === checkAdmin.password;
+		else {
+			console.log('hello');
+			checkPassword = password === checkAdmin.password;
+		}
 
 		if (!checkPassword) {
+			console.log('chceckPassword', checkPassword);
 			throw new Error('Invalid email or password!');
 		}
 

@@ -47,14 +47,19 @@ const addAdmin = async (data, returning = false) => {
 };
 
 const updateAdmin = async (id, updates, returning = true) => {
-	const [, rows] = await Admin.update(updates, {
-		where: {
-			id,
-		},
-		returning,
-	});
+	try {
+		const [, rows] = await Admin.update(updates, {
+			where: {
+				id,
+			},
+			returning,
+		});
 
-	return returning ? rows[0] : undefined;
+		return returning ? rows[0] : undefined;
+	} catch (err) {
+		console.log(err);
+		throw new Error('unAuthorzied!');
+	}
 };
 
 const deleteAdmin = async id => {

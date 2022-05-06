@@ -295,6 +295,7 @@ Router.post(ADMIN_ADD_ADMIN, checkSuperAdmin, async (req, res, next) => {
 			errors: null,
 		});
 	} catch (err) {
+		console.log(err);
 		next(err);
 	}
 });

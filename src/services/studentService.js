@@ -50,6 +50,7 @@ const addStudent = async (data, returning = false) => {
 	} catch (err) {
 		console.log('there is an error on the database');
 		console.log(err);
+		throw err;
 	}
 };
 

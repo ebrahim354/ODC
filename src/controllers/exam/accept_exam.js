@@ -2,6 +2,7 @@ const { acceptExam } = require('../../services/examService');
 const { getOneStudent } = require('../../services/studentService');
 const { getCourse } = require('../../services/courseService');
 const sendEmail = require('../../utils/sendEmail');
+const sendSMS = require('../../utils/sendSMS');
 const { envEmail } = require('../../utils/config');
 
 module.exports = async (examId, adminId, { maxDegree, minDegree, degree }) => {
@@ -23,6 +24,7 @@ module.exports = async (examId, adminId, { maxDegree, minDegree, degree }) => {
     `;
 
 		await sendEmail(to, from, subject, text);
+		await sendSMS(student.phone, text);
 		return revision;
 	} catch (err) {
 		console.log(err);

@@ -9,6 +9,7 @@ module.exports = async (req, res, next) => {
 		const payload = verify(token, secret);
 		console.log('payload');
 		const admin = await getOneAdmin({ id: payload.id });
+		console.log('got admin!', admin);
 		if (!admin || !admin.isSuperAdmin) throw new Error('unAuthorized');
 		req.ctx = admin;
 		next();

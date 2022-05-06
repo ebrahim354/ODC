@@ -30,7 +30,17 @@ Router.post(STUDENT_REGISTER_ROUTE, async (req, res, next) => {
 	const { email, password, phone, address, college, name } = req.body;
 
 	try {
-		if (!email || !password || !phone || !address || !college || !name) {
+		if (
+			!email ||
+			!password ||
+			!phone ||
+			!address ||
+			!college ||
+			!name ||
+			phone.length < 8 ||
+			!email.contains('@') ||
+			name.length < 3
+		) {
 			console.log('there is an error');
 			throw new Error('Invalid input');
 		}
@@ -57,8 +67,8 @@ Router.post(STUDENT_REGISTER_ROUTE, async (req, res, next) => {
 Router.post(STUDENT_VERIFY, async (req, res, next) => {
 	const { code, email } = req.body;
 	try {
-		if (!code) throw new Error('Invalid input!');
-		console.log('hello');
+		if (!code || !email || !email.contains('@'))
+			throw new Error('Invalid input!');
 
 		const token = await verify_student(code, email);
 
@@ -78,12 +88,8 @@ Router.post(STUDENT_LOGIN_ROUTE, async (req, res, next) => {
 	const { email, password, phone } = req.body;
 	try {
 		if (!(email || phone) || !password) {
-			console.log(email);
-			console.log(phone);
-			console.log(password);
 			throw new Error('Invalid input');
 		}
-		console.log('hello');
 
 		const token = await login_student({ email, password, phone });
 
